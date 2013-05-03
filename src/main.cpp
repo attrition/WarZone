@@ -46,11 +46,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     // main loop
     while (window.isOpen())
     {
-        // event handling
+        // event handling        
+        sf::Event event;
+        while (window.pollEvent(event))
         {
-            sf::Event event;
-            window.pollEvent(event); // may drop events, need proper handling
-
             if (event.type == sf::Event::Closed)
                 window.close();
 
@@ -59,9 +58,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                     window.close();
             }
-
-            if (event.type == sf::Event::MouseMoved)
-                mouse = sf::Mouse::getPosition(window);
         }
 
         // update func
